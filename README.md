@@ -27,8 +27,18 @@ Además, **Docker abstrae las diferencias entre los sistemas operativos anfitrio
 Esto permite que todos los miembros del equipo trabajen sobre exactamente el mismo entorno, reduciendo los clásicos problemas de configuración, eliminando las diferencias entre máquinas y facilitando enormemente la incorporación de nuevos desarrolladores al proyecto.
 
 ## Beneficios
+`A diferencia de las máquinas virtuales, los contenedores se levantan en milésimas de segundos o segundos`
 - Cada contenedor está aislado de los demas.
 - Es posible ejecutar varias instancias de la misma versión o diferentes versiones sin configuraciones adicionales.
 - Con un comando, se puede descargar, levantar y correr todo lo que necesites.
 - Cada contenedor contiene todo lo que necesita para ejecutarse.
 - Es indiferente el sistema operativo HOST
+
+### Flujo de trabajo usando Docker
+Supongamos que estamos trabajando en una API y frontend necesita empezar a consumirlo y nosotros necesitamos empaquetar nuestra aplicación y distrubuírla
+- Generamos nuestra imagen desde el back, hacemos el build process,  el cual se puede automatizar meidante Git y Jenkins para el proceso de construcción de nuestra imagen, -que tambien automatiza el siguiete paso-.
+- Construimos la imagen (ahí ya estaría node instalado, la app instalada con únicamente las dependencias de prod.), la imagen contiene todo lo que yo necesito para ejecutar.
+- Esta imagen se sube a un repositorio (container, parecido a Github, pero pensado específicamente para imágenes de Docker)
+- El servidor hace el pull de la imagen y ya esto tiene todo lo que nosotros necesitabamos para correr aplicaicón específicamente como se necesita, así como el front se descarga la imagen y tiene la capacidad de correrla localmente.
+
+[Imagen](/doc/image.md)
